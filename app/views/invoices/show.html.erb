@@ -1,2 +1,11 @@
-<h1>Invoices#show</h1>
-<p>Find me in app/views/invoices/show.html.erb</p>
+<h1>請求書詳細</h1>
+<p>発行日: <%= @invoice.issued_on %></p>
+<p>請求元: <%#= @invoice.requestors.name %></p>
+<p>件名: <%= @invoice.subject %></p>
+<p>支払い期日: <%= @invoice.due_on %></p>
+<p>メモ: <%= @invoice.memo %></p>
+<hr>
+<p>内訳: <%#= @invoice.invoice_details.subject %></p>
+<p>数量: <%#= @invoice.invoice_details.quantity %></p>
+<p>単価: <%#= @invoice.invoice_details.unit_price %></p>
+<p>freee連携: <%= @invoice.api_status %></p>

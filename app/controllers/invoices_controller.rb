@@ -11,10 +11,10 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
     if @invoice.save
       redirect_to invoices_path
-      flash[:success] = t('notice.task_create')
+      flash[:success] = "請求書を登録しました"
     else
-      flash.now[:danger] = t('flash.create')
-      render :new
+      flash.now[:danger] = "請求書の登録に失敗しました"
+      render :new, status: :unprocessable_entity
     end
   end
 

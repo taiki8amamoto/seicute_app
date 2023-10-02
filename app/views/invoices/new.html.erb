@@ -1,2 +1,48 @@
-<h1>Invoices#new</h1>
-<p>Find me in app/views/invoices/new.html.erb</p>
+<h1>請求書登録</h1>
+<%= form_with(model: @invoice, local: true) do |form| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_expanation">
+      <h2><%= @invoice.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @invoice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <p><%= form.label :発行日 %></p>
+    <p><%= form.date_select :issued_on %></p>
+  </div>
+  <div>
+    <p><%= form.label :請求元 %></p>
+    <p><%= form.text_field :requestor %></p>
+  </div>
+  <div>
+    <p><%= form.label :件名 %></p>
+    <p><%= form.text_field :subject %></p>
+  </div>
+  <div>
+    <p><%= form.label :支払い期日 %></p>
+    <p><%= form.date_select :due_on %></p>
+  </div>
+  <div>
+    <p><%= form.label :メモ %></p>
+    <p><%= form.text_area :memo %></p>
+  </div>
+    <%= form.fields_for :invoice_details do |invoice_detail| %>
+      <div>
+        <p><%= invoice_detail.label :内訳 %></p>
+        <p><%= invoice_detail.text_field :subject %></p>
+      </div>
+      <div>
+        <p><%= invoice_detail.label :数量 %></p>
+        <p><%= invoice_detail.number_field :quantity %></p>
+      </div>
+      <div>
+        <p><%= invoice_detail.label :単価 %></p>
+        <p><%= invoice_detail.number_field :price %></p>
+      </div>
+    <% end %>
+  <p><%= form.submit :登録する %></p>
+<% end %>

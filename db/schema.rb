@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_02_062918) do
     t.string "subject", null: false
     t.date "issued_on", null: false
     t.date "due_on", null: false
-    t.integer "api_status", null: false
+    t.integer "api_status", default: 0, null: false
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
