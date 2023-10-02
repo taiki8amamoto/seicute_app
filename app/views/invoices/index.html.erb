@@ -1,0 +1,16 @@
+<h1>請求書一覧</h1>
+<table>
+  <tr>
+    <th>支払い期日</th>
+    <th>件名</th>
+    <th>請求元</th>
+    <th>freee連携</th>
+  </tr>
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice.due_on %></td>
+    <td><%= link_to invoice.subject, invoice_path(invoice.id) %></td>
+    <td><%#= invoice.requestor %></td>
+  </tr>
+<% end %>
+</table>
