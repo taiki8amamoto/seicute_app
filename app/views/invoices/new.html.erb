@@ -10,14 +10,22 @@
       </ul>
     </div>
   <% end %>
+  <%= form.fields_for :pictures do |picture| %>
+    <div>
+      <p><%= picture.label :画像 %></p>
+      <p><%= picture.file_field :image %></p>
+    </div>
+  <% end %>
   <div>
     <p><%= form.label :発行日 %></p>
     <p><%= form.date_select :issued_on %></p>
   </div>
-  <div>
-    <p><%= form.label :請求元 %></p>
-    <p><%= form.text_field :requestor %></p>
-  </div>
+  <%= form.fields_for :requestors do |requestor| %>
+    <div>
+      <p><%= requestor.label :請求元 %></p>
+      <p><%= requestor.select :requestor, Requestor.all.collect { |p| [ p.name, p.id ] } %></p>
+    </div>
+  <% end %>
   <div>
     <p><%= form.label :件名 %></p>
     <p><%= form.text_field :subject %></p>
