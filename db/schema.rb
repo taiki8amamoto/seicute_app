@@ -32,8 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_045445) do
     t.text "memo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "requestor_id", null: false
-    t.index ["requestor_id"], name: "index_invoices_on_requestor_id"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -44,14 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_045445) do
     t.index ["invoice_id"], name: "index_pictures_on_invoice_id"
   end
 
-  create_table "requestors", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_requestors_on_name", unique: true
-  end
-
   add_foreign_key "invoice_details", "invoices"
-  add_foreign_key "invoices", "requestors"
   add_foreign_key "pictures", "invoices"
 end
