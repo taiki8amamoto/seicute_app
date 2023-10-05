@@ -3,5 +3,5 @@
 Rails.application.routes.draw do
   root 'invoices#index'
   resources :invoices, only: %w(new create index show)
-  resources :requestors, only: %w(create)
+  resources :requestors, only: %w(new create index)
 end
