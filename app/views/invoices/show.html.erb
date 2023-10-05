@@ -1,4 +1,8 @@
 <h1>請求書詳細</h1>
+<% @invoice.pictures.each do |picture| %>
+  <p>画像: <%= image_tag picture.image.url %></p>
+<% end %>
+
 <p>発行日: <%= @invoice.issued_on %></p>
 <p>請求元: <%#= @invoice.requestors.name %></p>
 <p>件名: <%= @invoice.subject %></p>
