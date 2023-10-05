@@ -16,6 +16,10 @@
       <p><%= picture.file_field :image %></p>
     </div>
   <% end %>
+    <div>
+      <p><%= form.label :請求元 %></p>
+      <p><%= form.select :requestor_id, Requestor.all.collect { |p| [ p.name, p.id ] } %></p>
+    </div>
   <div>
     <p><%= form.label :発行日 %></p>
     <p><%= form.date_select :issued_on %></p>

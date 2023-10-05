@@ -4,7 +4,7 @@
 <% end %>
 
 <p>発行日: <%= @invoice.issued_on %></p>
-<p>請求元: <%#= @invoice.requestors.name %></p>
+<p>請求元: <%= Requestor.find(@invoice.requestor_id).name %></p>
 <p>件名: <%= @invoice.subject %></p>
 <p>支払い期日: <%= @invoice.due_on %></p>
 <p>メモ: <%= @invoice.memo %></p>
