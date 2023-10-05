@@ -11,7 +11,9 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    @requestor = Requestor.new(requestor_params)
     # @invoice.requestor_id = 
+    binding.pry
     if @invoice.save
       redirect_to invoices_path
       flash[:success] = "請求書を登録しました"
@@ -29,6 +31,10 @@ class InvoicesController < ApplicationController
 
   def invoice_params
     params.require(:invoice).permit(:subject, :issued_on, :due_on, :api_status, :memo, invoice_details_attributes: [:subject, :quantity, :unit_price, :_destroy, :id], pictures_attributes: [:image, :_destroy, :id])
+  end
+
+  def requestor_params
+    params.require(:requestor).permit(:name)
   end
 
 end
