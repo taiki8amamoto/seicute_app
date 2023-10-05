@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_02_062918) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_045445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "invoice_details", force: :cascade do |t|
+    t.string "subject", null: false
+    t.integer "unit_price", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "invoice_id", null: false
+    t.index ["invoice_id"], name: "index_invoice_details_on_invoice_id"
+  end
 
   create_table "invoices", force: :cascade do |t|
     t.string "subject", null: false
@@ -24,4 +34,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_02_062918) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pictures", force: :cascade do |t|
+    t.text "image", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "invoice_id", null: false
+    t.index ["invoice_id"], name: "index_pictures_on_invoice_id"
+  end
+
+  add_foreign_key "invoice_details", "invoices"
+  add_foreign_key "pictures", "invoices"
 end
