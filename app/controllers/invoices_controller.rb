@@ -12,8 +12,9 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     if @invoice.save
-      redirect_to invoices_path
-      flash[:success] = "請求書を登録しました"
+      respond_to do |format|
+        format.turbo_stream { redirect_to invoices_path, notice: "請求書を登録しました" }
+      end
     else
       flash.now[:danger] = "請求書の登録に失敗しました"
       render :new, status: :unprocessable_entity

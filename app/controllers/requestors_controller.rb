@@ -11,8 +11,9 @@ class RequestorsController < ApplicationController
   def create
     @requestor = Requestor.new(requestor_params)
     if @requestor.save
-      flash[:success] = "請求元を登録しました"
-      redirect_to requestors_path
+      respond_to do |format|
+        format.turbo_stream { redirect_to requestors_path, notice: "請求元を登録しました" }
+      end
     else
       flash.now[:danger] = "請求元の登録に失敗しました"
       render :new, status: :unprocessable_entity

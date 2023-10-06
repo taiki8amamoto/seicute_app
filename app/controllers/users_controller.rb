@@ -8,11 +8,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to invoices_path
-      flash[:notice] = 'ユーザーの作成に成功しました'
+      respond_to do |format|
+        format.turbo_stream { redirect_to invoices_path, notice: "ユーザーの作成に成功しました" }
+      end
     else
-      flash.now[:alert] = 'ユーザーの作成に失敗しました'
-      render :new
+      flash.now[:alert] = "ユーザーの作成に失敗しました"
+      render :new, status: :unprocessable_entity
     end
   end
 

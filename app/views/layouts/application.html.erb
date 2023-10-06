@@ -11,6 +11,12 @@
   </head>
 
   <body>
+  <% if logged_in? %>
+    <%= link_to "ログアウト", session_path(current_user.id), data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？"} %>
+  <% end %>
+  <div id="flash" class="flash">
+    <%= render "layouts/flash" %>
+  </div>
     <%= yield %>
   </body>
 </html>
