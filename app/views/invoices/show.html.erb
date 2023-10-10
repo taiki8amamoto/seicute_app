@@ -1,19 +1,50 @@
 <h1>請求書詳細</h1>
 <% @invoice.pictures.each do |picture| %>
-  <p>画像: <%= image_tag picture.image.url %></p>
+  <p><%= image_tag picture.image.url %></p>
 <% end %>
 
-<p>発行日: <%= l @invoice.issued_on, format: :default %></p>
-<p>請求元: <%= Requestor.find(@invoice.requestor_id).name %></p>
-<p>件名: <%= @invoice.subject %></p>
-<p>支払い期日: <%= l @invoice.due_on, format: :default %></p>
-<p>メモ: <%= @invoice.memo %></p>
-<hr>
+<table>
+  <tr>
+    <th>請求元</th>
+    <th>件名</th>
+    <th>期日</th>
+  </tr>
+  <tr>
+    <td><%= Requestor.find(@invoice.requestor_id).name %></td>
+    <td><%= @invoice.subject %></td>
+    <td><%= l @invoice.due_on, format: :default %></td>
+  </tr>
+  <tr>
+    <th>小計</th>
+    <th>合計</th>
+    <th>メモ</th>
+  </tr>
+  <tr>
+    <td><%= @subtotal.to_s(:delimited) %>円</td>
+    <td><%= @total.to_s(:delimited) %>円</td>
+    <td><%= @invoice.memo %></td>
+  </tr>
+  <tr>
+    <th>内訳</th>
+    <th>数量</th>
+    <th>税抜き単価</th>
+    <th>金額</th>
+  </tr>
+  <% @invoice.invoice_details.each do |invoice_detail| %>
+  <tr>
+    <td><%= invoice_detail.subject %></td>
+    <td><%= invoice_detail.quantity %></td>
+    <td><%= invoice_detail.unit_price.to_s(:delimited) %>円</td>
+    <td><%= (invoice_detail.quantity * invoice_detail.unit_price).to_s(:delimited) %>円</td>
+  </tr>
+  <% end %>
 
-<% @invoice.invoice_details.each do |invoice_detail| %>
-  <p>内訳: <%= invoice_detail.subject %></p>
-  <p>数量: <%= invoice_detail.quantity %></p>
-  <p>単価: <%= invoice_detail.unit_price %></p>
-<% end %>
-<p>freee連携: <%= @invoice.api_status %></p>
-<p>登録者: <%= @invoice.user.email %>さん</p>
+  <tr>
+    <th>freee連携</th>
+    <th>登録者</th>
+  </tr>
+  <tr>
+    <td><%= @invoice.api_status %></td>
+    <td><%= @invoice.user.email %>さん</td>
+  </tr>
+</table>
