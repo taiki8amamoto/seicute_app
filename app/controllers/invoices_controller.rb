@@ -11,6 +11,13 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
+    # if params[:test_aaa]
+    #   requestor = Requestor.create(name: params[:test_aaa])
+    #   invoice.requestor_id = requestor.id
+    # end
+    # if params[:requestor]
+    #   requestor = Requestor
+    # end
     if @invoice.save
       respond_to do |format|
         format.turbo_stream { redirect_to invoices_path, notice: "請求書を登録しました" }

@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  <%= link_to "ユーザー一覧", users_path %>
   <% if logged_in? %>
     <%= link_to "ログアウト", session_path(current_user.id), data: { turbo_method: :delete, turbo_confirm: "ログアウトしますか？"} %>
   <% end %>
@@ -19,4 +20,6 @@
   </div>
     <%= yield %>
   </body>
+  <%= link_to "請求書一覧", invoices_path %>
+  <%= link_to "請求書登録", new_invoice_path %>
 </html>

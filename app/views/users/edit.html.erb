@@ -1,4 +1,4 @@
-<h1>ユーザー登録</h1>
+<h1>ユーザー編集</h1>
 <%= form_with(model: @user, local: true) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -24,8 +24,9 @@
   </P>
   <P>
   <%= f.label :ユーザー種別 %>
-  <%= f.select :role, User.roles.keys.to_a, include_blank: "選択してください" %>
+  <%= f.select :role, User.roles.keys.to_a %>
   </P>
   <br>
-  <%= f.submit "登録する" %>
+  <%= f.submit "更新する" %>
 <% end %>
+<%= link_to "戻る", users_path %>

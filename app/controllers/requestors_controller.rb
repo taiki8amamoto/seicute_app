@@ -12,7 +12,7 @@ class RequestorsController < ApplicationController
     @requestor = Requestor.new(requestor_params)
     if @requestor.save
       respond_to do |format|
-        format.turbo_stream { redirect_to requestors_path, notice: "請求元を登録しました" }
+        format.turbo_stream { redirect_to new_invoice_path, notice: "請求元を登録しました" }
       end
     else
       flash.now[:danger] = "請求元の登録に失敗しました"
