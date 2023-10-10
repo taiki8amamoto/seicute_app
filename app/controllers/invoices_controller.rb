@@ -18,6 +18,7 @@ class InvoicesController < ApplicationController
     # if params[:requestor]
     #   requestor = Requestor
     # end
+    @invoice.user_id = current_user.id
     if @invoice.save
       respond_to do |format|
         format.turbo_stream { redirect_to invoices_path, notice: "請求書を登録しました" }
