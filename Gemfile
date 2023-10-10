@@ -17,6 +17,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'carrierwave', '~> 3.0'
 gem 'mini_magick'
+gem 'sorcery'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]

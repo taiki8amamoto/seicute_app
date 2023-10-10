@@ -16,15 +16,17 @@
       <p><%= picture.file_field :image %></p>
     </div>
   <% end %>
+  <%= turbo_frame_tag "first_turbo_frame" do %>
     <div>
       <p><%= form.label :請求元 %></p>
       <p><%= form.select :requestor_id, Requestor.all.collect { |p| [ p.name, p.id ] } %></p>
+      <%= link_to "新しい請求元の登録", new_requestor_path %>
     </div>
+  <% end %>
   <div>
     <p><%= form.label :発行日 %></p>
     <p><%= form.date_select :issued_on %></p>
   </div>
-
   <div>
     <p><%= form.label :件名 %></p>
     <p><%= form.text_field :subject %></p>
