@@ -3,10 +3,10 @@
   <p>画像: <%= image_tag picture.image.url %></p>
 <% end %>
 
-<p>発行日: <%= @invoice.issued_on %></p>
+<p>発行日: <%= l @invoice.issued_on, format: :default %></p>
 <p>請求元: <%= Requestor.find(@invoice.requestor_id).name %></p>
 <p>件名: <%= @invoice.subject %></p>
-<p>支払い期日: <%= @invoice.due_on %></p>
+<p>支払い期日: <%= l @invoice.due_on, format: :default %></p>
 <p>メモ: <%= @invoice.memo %></p>
 <hr>
 

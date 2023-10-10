@@ -3,7 +3,7 @@
   <%= form_with(model: @requestor, local: true) do |form| %>
     <% if @requestor.errors.any? %>
       <div id="error_expanation">
-        <h2><%= @requestor.errors.count %>件のエラーがあります。</h2>
+        <%= @requestor.errors.count %>件のエラーがあります。
         <ul>
         <% @requestor.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
@@ -12,10 +12,8 @@
       </div>
     <% end %>
     <div>
-    <p><%= form.label :請求元 %></p>
-    <p><%= form.select :requestor_id, Requestor.all.collect { |p| [ p.name, p.id ] } %></p>
-    <p><%= form.text_field :name %></p>
+    <p><%= form.label :name %></p>
+    <p><%= form.text_field :name %><%= form.submit :追加 %></p>
     </div>
-    <p><%= form.submit :登録する %></p>
   <% end %>
 <% end %>
