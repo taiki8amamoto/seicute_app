@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_06_104603) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_042106) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,7 +33,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_104603) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "requestor_id", null: false
+    t.bigint "user_id", null: false
     t.index ["requestor_id"], name: "index_invoices_on_requestor_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -63,5 +65,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_06_104603) do
 
   add_foreign_key "invoice_details", "invoices"
   add_foreign_key "invoices", "requestors"
+  add_foreign_key "invoices", "users"
   add_foreign_key "pictures", "invoices"
 end

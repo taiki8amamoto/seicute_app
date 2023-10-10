@@ -1,6 +1,7 @@
 class Invoice < ApplicationRecord
   has_many :invoice_details, dependent: :destroy
   has_many :pictures, dependent: :destroy
+  belongs_to :user
   accepts_nested_attributes_for :invoice_details, allow_destroy: true, reject_if: lambda {|attributes| attributes['subject'].blank? and attributes['quantity'].blank? and attributes['unit_price'].blank?}
   accepts_nested_attributes_for :pictures, allow_destroy: true, reject_if: lambda {|attributes| attributes['image'].blank?}
   belongs_to :requestor
