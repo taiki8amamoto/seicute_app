@@ -24,7 +24,7 @@ class SearchesController < ApplicationController
         from = due_on.beginning_of_year
         to = due_on.end_of_year
         @invoices = @invoices.search_by_due_on_year(from, to)
-      else
+      elsif params[:search]["due_on(2i)"].present? || params[:search]["due_on(3i)"].present?
         @invoices = []
       end
       if params[:search][:subject].present?

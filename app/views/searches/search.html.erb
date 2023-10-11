@@ -5,22 +5,19 @@
   <%= form.select :requestor_id, Requestor.all.collect { |p| [ p.name, p.id ] }, include_blank: "請求元..." %>
   <%= form.submit "検索する" %>
 <% end %>
-
-<%= turbo_frame_tag "invoice-list" do %>
-  <table>
+<table>
+  <tr>
+    <th>支払い期日</th>
+    <th>件名</th>
+    <th>請求元</th>
+    <th>freee連携</th>
+  </tr>
+  <% @invoices.each do |invoice| %>
     <tr>
-      <th>支払い期日</th>
-      <th>件名</th>
-      <th>請求元</th>
-      <th>freee連携</th>
+      <td><%= l invoice.due_on, format: :default %></td>
+      <td><%= link_to invoice.subject, invoice_path(invoice.id) %></td>
+      <td><%= invoice.requestor.name %></td>
+      <td><%= invoice.api_status %></td>
     </tr>
-    <% @invoices.each do |invoice| %>
-      <tr>
-        <td><%= l invoice.due_on, format: :default %></td>
-        <td><%= link_to invoice.subject, invoice_path(invoice.id) %></td>
-        <td><%= invoice.requestor.name %></td>
-        <td><%= invoice.api_status %></td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+  <% end %>
+</table>
