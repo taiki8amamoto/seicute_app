@@ -2,7 +2,7 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @user.errors.count %><%= t('.errors') %></h2>
+      <%= @user.errors.count %><%= t('.errors') %>
       <ul>
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,22 +11,22 @@
     </div>
   <% end %>
   <p>
-  <%= f.label :メールアドレス %>
+  <%= f.label :email %>
   <%= f.email_field :email %>
   </P>
   <P>
-  <%= f.label :パスワード %>
+  <%= f.label :password %>
   <%= f.password_field :password %>
   </P>
   <P>
-  <%= f.label :パスワード確認 %>
+  <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   </P>
   <P>
-  <%= f.label :ユーザー種別 %>
+  <%= f.label :role %>
   <%= f.select :role, User.roles.keys.to_a %>
   </P>
   <br>
-  <%= f.submit "更新する" %>
+  <%= f.submit %>
 <% end %>
 <%= link_to "戻る", users_path %>

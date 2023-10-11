@@ -31,6 +31,8 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:id])
+    @subtotal = @invoice.subtotal_price_without_tax
+    @total = @invoice.total_price_with_tax
   end
 
   private

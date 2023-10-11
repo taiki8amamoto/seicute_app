@@ -8,9 +8,10 @@
   </tr>
 <% @invoices.each do |invoice| %>
   <tr>
-    <td><%= invoice.due_on %></td>
+    <td><%= l invoice.due_on, format: :default %></td>
     <td><%= link_to invoice.subject, invoice_path(invoice.id) %></td>
-    <td><%#= invoice.requestor %></td>
+    <td><%= invoice.requestor.name %></td>
+    <td><%= invoice.api_status %></td>
   </tr>
 <% end %>
 </table>
