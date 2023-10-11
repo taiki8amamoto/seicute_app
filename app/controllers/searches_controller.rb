@@ -1,12 +1,15 @@
 class SearchesController < ApplicationController
   def search
-    @invoices = Invoice.all
+    @invoices = Invoice.all.includes(:requestor)
     if params[:search].present?
       if params[:search]["due_on(1i)"].present? && params[:search]["due_on(2i)"].present? && params[:search]["due_on(3i)"].present?
         year = params[:search]["due_on(1i)"]
         month = params[:search]["due_on(2i)"]
         date = params[:search]["due_on(3i)"]
-        due_on = Date.parse(year + "-" + month + "-" + date)
+        begin
+          due_on = Date.parse(year + "-" + month + "-" + date)
+        rescue
+        end
         @invoices = @invoices.search_by_due_on_date(due_on)
       elsif params[:search]["due_on(1i)"].present? && params[:search]["due_on(2i)"].present?
         year = params[:search]["due_on(1i)"]
@@ -24,7 +27,7 @@ class SearchesController < ApplicationController
         from = due_on.beginning_of_year
         to = due_on.end_of_year
         @invoices = @invoices.search_by_due_on_year(from, to)
-      else
+      elsif params[:search]["due_on(2i)"].present? || params[:search]["due_on(3i)"].present?
         @invoices = []
       end
       if params[:search][:subject].present?
