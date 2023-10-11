@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.all.includes(:requestor)
     # if params[:search].present?
     #   if params[:search]["due_on(1i)"].present? && params[:search]["due_on(2i)"].present? && params[:search]["due_on(3i)"].present?
     #     year = params[:search]["due_on(1i)"]
