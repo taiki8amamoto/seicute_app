@@ -11,6 +11,10 @@ class Invoice < ApplicationRecord
   validates :due_on, presence: true
   validates :api_status, presence: true
   enum api_status: { 未連携: 0, 完了: 1 }
+  scope :search_by_due_on_year, -> (from, to){ where(due_on: from..to)}
+  scope :search_by_due_on_month, -> (from, to){ where(due_on: from..to)}
+  scope :search_by_due_on_date, -> (due_on){ where(due_on: "#{due_on}")}
+  scope :search_by_subject, -> (subject){ where("subject LIKE ?", "%#{subject}%")}
 
   def subtotal_price_without_tax
     subtotal = 0
