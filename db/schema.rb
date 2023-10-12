@@ -40,6 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_042106) do
 
   create_table "pictures", force: :cascade do |t|
     t.text "image", null: false
+    t.text "google_drive_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "invoice_id", null: false

@@ -18,6 +18,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'carrierwave', '~> 3.0'
 gem 'mini_magick'
 gem 'sorcery'
+gem 'dotenv-rails'
+gem 'google_drive', '~> 3.0', '>= 3.0.7'
+gem 'faraday-multipart'
+gem 'multipart-post', '~> 2.3'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]

@@ -1,6 +1,6 @@
 <h1>請求書詳細</h1>
-<% @invoice.pictures.each do |picture| %>
-  <p><%= image_tag picture.image.url %></p>
+<% @pictures.each do |picture| %>
+  <%= image_tag picture.google_drive_url %>
 <% end %>
 
 <table>

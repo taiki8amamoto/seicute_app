@@ -4,6 +4,7 @@
   <%= form.search_field :subject, placeholder: "件名..." %>
   <%= form.select :requestor_id, Requestor.all.collect { |p| [ p.name, p.id ] }, include_blank: "請求元..." %>
   <%= form.submit "検索する" %>
+  <%= link_to "結果をクリア", invoices_path %>
 <% end %>
 <table>
   <tr>
