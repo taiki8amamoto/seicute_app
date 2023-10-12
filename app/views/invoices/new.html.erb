@@ -10,20 +10,19 @@
       </ul>
     </div>
   <% end %>
-  画像
   <div class="pictures-container" id="pictures">
     <%= form.fields_for :pictures do |picture| %>
       <div class="picture" style="display: none">
         <div>
-          <p><%#= picture.label :image %></p>
-          <p><%= picture.file_field :image %></p>
+          <p><%= picture.label :image %></p>
+          <p><%= picture.file_field :image, capture: "camera" %></p>
         </div>
       </div>
     <% end %>
   </div>
   <div>
     <button id="add-picture-form" type="button">追加</button>
-    10枚まで追加可能
+    3枚まで保存可能
   </div>
   <%= turbo_frame_tag "first_turbo_frame" do %>
     <div>
@@ -48,19 +47,19 @@
     <p><%= form.label :memo %></p>
     <p><%= form.text_area :memo %></p>
   </div>
-  <div class="invoice-details-container" id="invoice-details">内訳　　　　　　　　数量　　　　　　　　単価
+  <div class="invoice-details-container" id="invoice-details">
     <%= form.fields_for :invoice_details do |invoice_detail| %>
       <div class="invoice-detail" style="display: none">
         <div>
-          <p><%#= invoice_detail.label :subject %></p>
+          <p><%= invoice_detail.label :subject %></p>
           <p><%= invoice_detail.text_field :subject %></p>
         </div>
         <div>
-          <p><%#= invoice_detail.label :quantity %></p>
+          <p><%= invoice_detail.label :quantity %></p>
           <p><%= invoice_detail.number_field :quantity %></p>
         </div>
         <div>
-          <p><%#= invoice_detail.label :unit_price %></p>
+          <p><%= invoice_detail.label :unit_price %></p>
           <p><%= invoice_detail.number_field :unit_price %></p>
         </div>
       </div>
@@ -68,7 +67,7 @@
   </div>
   <div>
     <button id="add-invoice-detail-form" type="button">追加</button>
-    10行まで追加可能
+    5行まで追加可
   </div>
   <p><%= form.submit %></p>
 <% end %>
