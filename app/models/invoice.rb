@@ -41,10 +41,10 @@ class Invoice < ApplicationRecord
       quantity = invoice_detail.quantity
       price = invoice_detail.unit_price
       subtotal = quantity * price
-      total += subtotal
-      total
+      sum = (quantity * price *1.10).to_i
+      total += sum
     end
-    total = (total * 1.10).floor
+    total = total.to_i
   end
 
 end
