@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password])
     if user
-      redirect_back_or_to root_path, notice: "ログインしました"
+      name = current_user.email.match(/(.*)@/)[1]
+      redirect_back_or_to root_path, notice: "おかえりなさい、#{name}さん"
+
     else
       flash.now[:danger] = "ログインに失敗しました"
       render :new, status: :unprocessable_entity
